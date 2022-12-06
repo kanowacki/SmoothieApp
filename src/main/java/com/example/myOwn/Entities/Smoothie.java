@@ -1,35 +1,38 @@
 package com.example.myOwn.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Smoothie {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
     private Integer size;
-//    private Base base;
-//    private List<Ingredient> ingredients;
 
-    public Smoothie(String name, Integer size) {
+    @ManyToOne
+    private Base base;
+
+    @ManyToMany(targetEntity=Ingredient.class)
+    private Set<Ingredient> ingredients;
+
+    public Smoothie(String name, Integer size, Base base, Set<Ingredient> ingredients) {
         this.name = name;
         this.size = size;
-//        this.base = base;
-//        this.ingredients = ingredients;
-    }
-
-    public Smoothie() {
+        this.base = base;
+        this.ingredients = ingredients;
     }
 
     @Override
@@ -38,8 +41,8 @@ public class Smoothie {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", size=" + size +
-//                ", base=" + base +
-//                ", ingredients=" + ingredients +
+                ", base=" + base +
+                ", ingredients=" + ingredients +
                 '}';
     }
 }
