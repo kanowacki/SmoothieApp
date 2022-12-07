@@ -17,7 +17,7 @@ import java.util.Set;
 public class Smoothie {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Integer size;
@@ -25,7 +25,15 @@ public class Smoothie {
     @ManyToOne
     private Base base;
 
-    @ManyToMany(targetEntity=Ingredient.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "smoothie_ingredient_table",
+            joinColumns = {
+                    @JoinColumn(name = "smoothie_id", referencedColumnName = "id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
+            }
+    )
     private Set<Ingredient> ingredients;
 
     public Smoothie(String name, Integer size, Base base, Set<Ingredient> ingredients) {

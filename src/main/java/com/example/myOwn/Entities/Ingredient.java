@@ -22,6 +22,6 @@ public class Ingredient {
     private Integer nutrition;
     private String amount;
 
-    @ManyToMany(targetEntity=Smoothie.class)
+    @ManyToMany(mappedBy = "ingredients", fetch = FetchType.LAZY)
     private Set<Smoothie> smoothies;
 }
