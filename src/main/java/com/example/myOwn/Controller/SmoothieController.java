@@ -23,9 +23,14 @@ public class SmoothieController {
         return service.findAllSmoothies();
     }
 
+    @DeleteMapping("/smoothies")
+    public ResponseEntity<HttpStatus> deleteAllSmoothies(){
+        return service.deleteAllSmoothies();
+    }
+
     @GetMapping("/smoothie/{id}")
     public ResponseEntity<Smoothie> findSmoothieById(@PathVariable Long id){
-        return new ResponseEntity<>(service.findSmoothieById(id), HttpStatus.OK);
+        return service.findSmoothieById(id);
     }
 
     @PostMapping("/smoothie")
@@ -33,9 +38,24 @@ public class SmoothieController {
         return service.addSmoothie(smoothie);
     }
 
+    @PutMapping("/smoothie/{id}")
+    public ResponseEntity<Smoothie> updateSmoothieById(@PathVariable Long id, @RequestBody Smoothie smoothie){
+        return service.updateSmoothie(id, smoothie);
+    }
+
+    @DeleteMapping("/smoothie/{id}")
+    public ResponseEntity<HttpStatus> deleteSmoothieById(@PathVariable Long id){
+        return service.deleteSmoothieById(id);
+    }
+
     @RequestMapping("/bases")
     public Collection<Base> allBases(){
         return service.findAllBases();
+    }
+
+    @DeleteMapping("/bases")
+    public ResponseEntity<HttpStatus> deleteAllBases(){
+        return service.deleteAllBases();
     }
 
     @GetMapping("/base/{id}")
@@ -51,6 +71,11 @@ public class SmoothieController {
     @RequestMapping("/ingredients")
     public Collection<Ingredient> allIngredients(){
         return service.findAllIngredients();
+    }
+
+    @DeleteMapping("/ingredients")
+    public ResponseEntity<HttpStatus> deleteAllIngredients(){
+        return service.deleteAllIngredients();
     }
 
     @GetMapping("/ingredient/{id}")

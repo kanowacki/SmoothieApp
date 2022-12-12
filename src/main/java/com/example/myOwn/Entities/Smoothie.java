@@ -1,5 +1,8 @@
 package com.example.myOwn.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +20,7 @@ import java.util.Set;
 public class Smoothie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private Integer size;
@@ -25,7 +28,7 @@ public class Smoothie {
     @ManyToOne
     private Base base;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "smoothie_ingredient_table",
             joinColumns = {
                     @JoinColumn(name = "smoothie_id", referencedColumnName = "id")
@@ -34,6 +37,10 @@ public class Smoothie {
                     @JoinColumn(name = "ingredient_id", referencedColumnName = "id")
             }
     )
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+            property  = "id",
+            scope     = Long.class)
+//    @JsonManagedReference
     private Set<Ingredient> ingredients;
 
     public Smoothie(String name, Integer size, Base base, Set<Ingredient> ingredients) {
@@ -52,5 +59,13 @@ public class Smoothie {
                 ", base=" + base +
                 ", ingredients=" + ingredients +
                 '}';
+    }
+
+    public void removeIngredientFromSmoothie(Ingredient ingredient){
+        for(Ingredient i : ingredients){
+            if(i.getId().equals(ingredient.getId())){
+                ingredients.remove(i);
+            }
+        }
     }
 }

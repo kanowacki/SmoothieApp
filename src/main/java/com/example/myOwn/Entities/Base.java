@@ -17,10 +17,10 @@ import lombok.Setter;
 public class Base {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private Integer amount;
-    private String nutrition;
+    private Integer nutrition;
 
 }
