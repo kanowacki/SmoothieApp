@@ -94,6 +94,15 @@ public class SmoothieService {
         }
     }
 
+    public ResponseEntity<HttpStatus> deleteBaseById(Long id) {
+        try{
+            baseRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public Base findBaseById(Long id) {
         //null could be replaced by some exception here
         return (id == null) ? null : baseRepository.findById(id).get();
@@ -110,6 +119,15 @@ public class SmoothieService {
     public ResponseEntity<HttpStatus> deleteAllIngredients(){
         try{
             ingredientRepository.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public ResponseEntity<HttpStatus> deleteIngredientById(Long id) {
+        try{
+            ingredientRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

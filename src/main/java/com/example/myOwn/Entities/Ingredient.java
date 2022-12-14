@@ -38,4 +38,9 @@ public class Ingredient {
             s.removeIngredientFromSmoothie(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

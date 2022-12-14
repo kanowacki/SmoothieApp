@@ -58,6 +58,11 @@ public class SmoothieController {
         return service.deleteAllBases();
     }
 
+    @DeleteMapping("/base/{id}")
+    public ResponseEntity<HttpStatus> deleteBaseById(@PathVariable Long id){
+        return service.deleteBaseById(id);
+    }
+
     @GetMapping("/base/{id}")
     public ResponseEntity<Base> findBaseById(@PathVariable Long id){
         return new ResponseEntity<>(service.findBaseById(id), HttpStatus.OK);
@@ -81,6 +86,11 @@ public class SmoothieController {
     @GetMapping("/ingredient/{id}")
     public ResponseEntity<Ingredient> findIngredientById(@PathVariable Long id){
         return new ResponseEntity<>(service.findIngredientById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/ingredient/{id}")
+    public ResponseEntity<HttpStatus> deleteIngredientById(@PathVariable Long id){
+        return service.deleteIngredientById(id);
     }
 
     @PostMapping("/ingredient")

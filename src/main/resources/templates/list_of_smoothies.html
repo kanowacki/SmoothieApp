@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>List of Smoothies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/config.css" th:href="@{/css/config.css}"/>
+</head>
+
+<body>
+
+<div class="container text-center">
+
+    <div><h1>Smoothie List</h1></div>
+    <div>
+        <table class="table table-bordered">
+            <thead class="thread-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Base</th>
+                    <th>Ingredients</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="smoothie : ${smoothieCollection}">
+                    <tr>
+                        <td>[[${smoothie.id}]]</td>
+                        <td>[[${smoothie.name}]]</td>
+                        <td>[[${smoothie.base}]]</td>
+                        <td>[[${smoothie.ingredients}]]</td>
+                    </tr>
+                </th:block>
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
+
+</body>
+</html>

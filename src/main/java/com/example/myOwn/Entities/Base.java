@@ -23,4 +23,8 @@ public class Base {
     private Integer amount;
     private Integer nutrition;
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
