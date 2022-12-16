@@ -5,7 +5,7 @@
 <head>
     <title>List of Smoothies</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../css/config.css" th:href="@{/css/config.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 </head>
 
 <body>
@@ -19,6 +19,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Size</th>
                     <th>Base</th>
                     <th>Ingredients</th>
                 </tr>
@@ -26,10 +27,11 @@
             <tbody>
                 <th:block th:each="smoothie : ${smoothieCollection}">
                     <tr>
-                        <td>[[${smoothie.id}]]</td>
-                        <td>[[${smoothie.name}]]</td>
-                        <td>[[${smoothie.base}]]</td>
-                        <td>[[${smoothie.ingredients}]]</td>
+                        <td th:text="${smoothie.id}"></td>
+                        <td th:text="${smoothie.name}"></td>
+                        <td th:text="${smoothie.size}"></td>
+                        <td th:text="${smoothie.base}"></td>
+                        <td th:text="${smoothie.ingredients}"></td>
                     </tr>
                 </th:block>
             </tbody>

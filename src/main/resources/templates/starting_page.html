@@ -14,15 +14,32 @@
 
     <div><h1>Welcome to Smoothie App</h1></div>
     <div>
-        <a class="h2" th:href="@{/smoothies}">List of Smoothies</a>
+        <a class="h2" th:href="@{/ui/smoothies}" method="get">List of Smoothies</a>
     </div>
     <div>
-        <a class="h2" th:href="@{/bases}">List of Bases</a>
+        <a class="h2" th:href="@{/ui/base}" method="get">Add new base</a>
     </div>
     <div>
-        <a class="h2" th:href="@{/ingredients}">List of Ingredients</a>
+        <a class="h2" th:href="@{/ui/ingredient}" method="get">Add new ingredient</a>
     </div>
-
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="put">Edit smoothie</a>
+    </div>
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="put">Edit base</a>
+    </div>
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="put">Edit ingredient</a>
+    </div>
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="delete">Delete smoothie</a>
+    </div>
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="delete">Delete base</a>
+    </div>
+    <div>
+        <a class="h2" th:href="@{/ui/ingredient}" method="delete">Delete ingredient</a>
+    </div>
 
 </div>
 
