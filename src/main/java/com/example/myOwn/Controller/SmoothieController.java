@@ -58,6 +58,11 @@ public class SmoothieController {
         return service.deleteAllBases();
     }
 
+    @PutMapping("/base/{id}")
+    public ResponseEntity<Base> updateBaseById(@PathVariable Long id, @RequestBody Base base){
+        return service.updateBase(id, base);
+    }
+
     @DeleteMapping("/base/{id}")
     public ResponseEntity<HttpStatus> deleteBaseById(@PathVariable Long id){
         return service.deleteBaseById(id);

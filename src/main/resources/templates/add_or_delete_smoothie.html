@@ -12,8 +12,38 @@
 
 <div class="container text-center">
 
-    <div><h1>Smoothie List</h1></div>
+    <div><h1>Smoothie</h1></div>
     <div>
+        <h1>Add new Smoothie</h1>
+        <form action="#" th:action="@{/ui/smoothie}" method="post" th:object="${smoothie}">
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" /><br/>
+
+            <label>Size:</label>
+            <input type="number" th:field="*{size}" /><br/>
+
+            <label>Select base:</label><br/>
+
+            <select th:field="*{base}">
+                <option th:each="base : ${baseCollection}" th:value="${base.id}" th:text="${base.name}"/>
+            </select><br/>
+
+            <label>Select ingredients (press ctrl and select as much ingredients as you need):</label><br/>
+
+            <select th:field="*{ingredients}" size="10" multiple="multiple">
+                <option th:each="ingredient : ${ingredientCollection}" th:value="${ingredient.id}" th:text="${ingredient.name}"/>
+            </select><br/>
+
+            <button type="submit">Save</button>
+        </form>
+        <h1>Delete an existing smoothie</h1>
+        <form action="#" th:action="@{/ui/smoothie}" th:method="delete" th:object="${smoothie}">
+            <label>Smoothie id:</label>
+            <input type="text" th:field="*{id}" /><br/>
+            <button type="submit" class="btn">Delete smoothie with given id</button>
+        </form>
+
+        <h1>List of available smoothies</h1>
         <table class="table table-bordered">
             <thead class="thread-dark">
                 <tr>

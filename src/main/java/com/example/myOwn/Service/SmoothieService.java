@@ -63,7 +63,7 @@ public class SmoothieService {
 
 
     public Smoothie addSmoothie(Smoothie smoothie) {
-        return (smoothie.getBase() == null || smoothie.getIngredients() == null || smoothie.getSize() == null || smoothie.getName() == null) ? null : smoothieRepository.save(smoothie);
+        return (smoothie.getBase() == null || smoothie.getSize() == null || smoothie.getName() == null) ? null : smoothieRepository.save(smoothie);
     }
 
     public ResponseEntity<Smoothie> updateSmoothie(Long id, Smoothie smoothie) {
@@ -110,6 +110,20 @@ public class SmoothieService {
 
     public Base addBase(Base base) {
         return (base.getAmount() == null || base.getName() == null || base.getNutrition() == null) ? null : baseRepository.save(base);
+    }
+
+    public ResponseEntity<Base> updateBase(Long id, Base base) {
+        Optional<Base> baseToUpdate = baseRepository.findById(id);
+
+        if (baseToUpdate.isPresent()) {
+            Base updatedBase = baseToUpdate.get();
+            updatedBase.setName(base.getName());
+            updatedBase.setAmount(base.getAmount());
+            updatedBase.setNutrition(base.getNutrition());
+            return new ResponseEntity<>(baseRepository.save(updatedBase), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     public Collection<Ingredient> findAllIngredients() {

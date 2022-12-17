@@ -24,22 +24,49 @@ public class UIController {
         return "starting_page";
     }
 
-    @GetMapping("/ui/smoothies")
-    public String allSmoothies(Model model){
+    @GetMapping("/ui/smoothie")
+    public String showSmoothieList(Model model){
         Collection<Smoothie> smoothieCollection = service.findAllSmoothies();
-        model.addAttribute("smoothieCollection",smoothieCollection);
+        Collection<Base> baseCollection = service.findAllBases();
+        Collection<Ingredient> ingredientCollection = service.findAllIngredients();
 
-        return "list_of_smoothies";
+        model.addAttribute("smoothieCollection",smoothieCollection);
+        model.addAttribute("baseCollection",baseCollection);
+        model.addAttribute("ingredientCollection",ingredientCollection);
+        model.addAttribute("smoothie",new Smoothie());
+
+        return "add_or_delete_smoothie";
+    }
+
+    @PostMapping("/ui/smoothie")
+    public String addSmoothie(@ModelAttribute Smoothie smoothie){
+        service.addSmoothie(smoothie);
+
+        return "redirect:/ui/smoothie";
+    }
+
+    @DeleteMapping("/ui/smoothie")
+    public String deleteSmoothie(@ModelAttribute Smoothie smoothie){
+        service.deleteSmoothieById(smoothie.getId());
+
+        return "redirect:/ui/smoothie";
+    }
+
+    @PutMapping("/ui/base")
+    public String updateBase(@ModelAttribute Base base){
+        service.updateBase(base.getId(), base);
+
+        return "redirect:/ui/base";
     }
 
     @GetMapping("/ui/base")
-    public String showBaseForm(Model model){
+    public String showBaseList(Model model){
         Collection<Base> baseCollection = service.findAllBases();
 
         model.addAttribute("baseCollection",baseCollection);
         model.addAttribute("base", new Base());
 
-        return "add_base";
+        return "add_or_delete_base";
     }
 
     @PostMapping("/ui/base")
@@ -49,7 +76,7 @@ public class UIController {
         return "redirect:/ui/base";
     }
 
-    @RequestMapping(value="/ui/deleteBase", method = RequestMethod.DELETE)
+    @DeleteMapping(value="/ui/base")
     public String deleteBase(@ModelAttribute Base base){
         service.deleteBaseById(base.getId());
 
@@ -57,18 +84,25 @@ public class UIController {
     }
 
     @GetMapping("/ui/ingredient")
-    public String showIngredientForm(Model model){
+    public String showIngredientList(Model model){
         Collection<Ingredient> ingredientCollection = service.findAllIngredients();
 
         model.addAttribute("ingredientCollection",ingredientCollection);
         model.addAttribute("ingredient", new Ingredient());
 
-        return "add_ingredient";
+        return "add_or_delete_ingredient";
     }
 
     @PostMapping("/ui/ingredient")
     public String addIngredient(Model model, @ModelAttribute Ingredient ingredient){
         service.addIngredient(ingredient);
+
+        return "redirect:/ui/ingredient";
+    }
+
+    @DeleteMapping(value="/ui/ingredient")
+    public String deleteIngredient(@ModelAttribute Ingredient ingredient){
+        service.deleteIngredientById(ingredient.getId());
 
         return "redirect:/ui/ingredient";
     }
