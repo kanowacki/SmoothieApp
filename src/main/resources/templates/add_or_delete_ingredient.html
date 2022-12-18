@@ -21,6 +21,27 @@
 
         <button type="submit">Save</button>
     </form>
+
+    <h1>Edit an existing ingredient</h1>
+    <form action="#" th:action="@{/ui/ingredient}" th:method="put" th:object="${ingredient}">
+        <label>Select ingredient you want to edit (by id number):</label><br/>
+
+        <select th:field="${ingredient.id}">
+            <option th:each="ingredient : ${ingredientCollection}" th:value="${ingredient.id}" th:text="${ingredient.id}"/>
+        </select><br/>
+
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+        <label>Amount:</label>
+        <input type="number" th:field="*{amount}" /><br/>
+
+        <label>Nutrition:</label>
+        <input type="number" th:field="*{nutrition}" /><br/>
+
+        <button type="submit">Save</button>
+    </form>
+
     <h1>Delete an existing ingredient</h1>
     <form action="#" th:action="@{/ui/ingredient}" th:method="delete" th:object="${ingredient}">
         <label>Base id:</label>
@@ -36,7 +57,7 @@
             <th>Name</th>
             <th>Amount</th>
             <th>Nutrition</th>
-            <th>Smoothies</th>
+<!--            <th>Smoothies</th>-->
         </tr>
         </thead>
         <tbody>
@@ -46,7 +67,7 @@
                 <td th:text="${ingredient.name}"></td>
                 <td th:text="${ingredient.amount}"></td>
                 <td th:text="${ingredient.nutrition}"></td>
-                <td th:text="${ingredient.smoothies}"></td>
+<!--                <td th:text="${ingredient.smoothies}"></td>-->
             </tr>
         </th:block>
         </tbody>

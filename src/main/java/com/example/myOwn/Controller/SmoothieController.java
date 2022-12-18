@@ -88,6 +88,11 @@ public class SmoothieController {
         return service.deleteAllIngredients();
     }
 
+    @PutMapping("/ingredient/{id}")
+    public ResponseEntity<Ingredient> updateIngredientById(@PathVariable Long id, @RequestBody Ingredient ingredient){
+        return service.updateIngredient(id, ingredient);
+    }
+
     @GetMapping("/ingredient/{id}")
     public ResponseEntity<Ingredient> findIngredientById(@PathVariable Long id){
         return new ResponseEntity<>(service.findIngredientById(id), HttpStatus.OK);

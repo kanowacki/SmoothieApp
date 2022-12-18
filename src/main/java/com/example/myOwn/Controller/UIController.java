@@ -52,6 +52,13 @@ public class UIController {
         return "redirect:/ui/smoothie";
     }
 
+    @PutMapping("/ui/smoothie")
+    public String updateSmoothie(@ModelAttribute Smoothie smoothie){
+        service.updateSmoothie(smoothie.getId(), smoothie);
+
+        return "redirect:/ui/smoothie";
+    }
+
     @PutMapping("/ui/base")
     public String updateBase(@ModelAttribute Base base){
         service.updateBase(base.getId(), base);
@@ -81,6 +88,13 @@ public class UIController {
         service.deleteBaseById(base.getId());
 
         return "redirect:/ui/base";
+    }
+
+    @PutMapping("/ui/ingredient")
+    public String updateIngredient(@ModelAttribute Ingredient ingredient){
+        service.updateIngredient(ingredient.getId(), ingredient);
+
+        return "redirect:/ui/ingredient";
     }
 
     @GetMapping("/ui/ingredient")

@@ -156,4 +156,18 @@ public class SmoothieService {
     public Ingredient addIngredient(Ingredient ingredient) {
         return (ingredient.getAmount() == null || ingredient.getName() == null || ingredient.getNutrition() == null) ? null : ingredientRepository.save(ingredient);
     }
+
+    public ResponseEntity<Ingredient> updateIngredient(Long id, Ingredient ingredient) {
+        Optional<Ingredient> ingredientToUpdate = ingredientRepository.findById(id);
+
+        if (ingredientToUpdate.isPresent()) {
+            Ingredient updatedIngredient= ingredientToUpdate.get();
+            updatedIngredient.setName(ingredient.getName());
+            updatedIngredient.setAmount(ingredient.getAmount());
+            updatedIngredient.setNutrition(ingredient.getNutrition());
+            return new ResponseEntity<>(ingredientRepository.save(updatedIngredient), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }

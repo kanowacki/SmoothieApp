@@ -36,6 +36,36 @@
 
             <button type="submit">Save</button>
         </form>
+
+        <h1>Edit an existing Smoothie</h1>
+        <form action="#" th:action="@{/ui/smoothie}" th:method="put" th:object="${smoothie}">
+            <label>Select smoothie you want to edit (by id number):</label><br/>
+
+            <select th:field="${smoothie.id}">
+                <option th:each="smoothie : ${smoothieCollection}" th:value="${smoothie.id}" th:text="${smoothie.id}"/>
+            </select><br/>
+
+            <label>Name:</label>
+            <input type="text" th:field="*{name}" /><br/>
+
+            <label>Size:</label>
+            <input type="number" th:field="*{size}" /><br/>
+
+            <label>Select base:</label><br/>
+
+            <select th:field="*{base}">
+                <option th:each="base : ${baseCollection}" th:value="${base.id}" th:text="${base.name}"/>
+            </select><br/>
+
+            <label>Select ingredients (press ctrl and select as much ingredients as you need):</label><br/>
+
+            <select th:field="*{ingredients}" size="10" multiple="multiple">
+                <option th:each="ingredient : ${ingredientCollection}" th:value="${ingredient.id}" th:text="${ingredient.name}"/>
+            </select><br/>
+
+            <button type="submit">Save</button>
+        </form>
+
         <h1>Delete an existing smoothie</h1>
         <form action="#" th:action="@{/ui/smoothie}" th:method="delete" th:object="${smoothie}">
             <label>Smoothie id:</label>
