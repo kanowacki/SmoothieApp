@@ -17,10 +17,10 @@
         <h1>Add new Smoothie</h1>
         <form action="#" th:action="@{/ui/smoothie}" method="post" th:object="${smoothie}">
             <label>Name:</label>
-            <input type="text" th:field="*{name}" /><br/>
+            <input type="text" th:field="*{name}" th:placeholder="Name" th:required="required"/><br/>
 
             <label>Size:</label>
-            <input type="number" th:field="*{size}" /><br/>
+            <input type="number" th:field="*{size}" th:placeholder="Size" th:required="required"/><br/>
 
             <label>Select base:</label><br/>
 
@@ -46,10 +46,10 @@
             </select><br/>
 
             <label>Name:</label>
-            <input type="text" th:field="*{name}" /><br/>
+            <input type="text" th:field="*{name}" class= "form-control" th:placeholder="Name" th:required="required"/><br/>
 
             <label>Size:</label>
-            <input type="number" th:field="*{size}" /><br/>
+            <input type="number" th:field="*{size}" th:placeholder="Size" th:required="required"/><br/>
 
             <label>Select base:</label><br/>
 

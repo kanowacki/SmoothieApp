@@ -10,14 +10,14 @@
 <div align="center">
     <h1>Add new ingredient (one portion for small smoothie size)</h1>
     <form action="#" th:action="@{/ui/ingredient}" method="post" th:object="${ingredient}">
-        <label>Name:</label>
-        <input type="text" th:field="*{name}" /><br/>
+        <label>Ingredient name:</label>
+        <input type="text" th:field="*{name}" th:placeholder="Name" th:required="required"/><br/>
 
-        <label>Amount:</label>
-        <input type="number" th:field="*{amount}" /><br/>
+        <label>Ingredient amount:</label>
+        <input type="number" th:field="*{amount}" th:placeholder="Amount" th:required="required"/><br/>
 
-        <label>Nutrition:</label>
-        <input type="number" th:field="*{nutrition}" /><br/>
+        <label>Ingredient nutrition value:</label>
+        <input type="number" th:field="*{nutrition}" th:placeholder="Nutrition" th:required="required"/><br/>
 
         <button type="submit">Save</button>
     </form>
@@ -30,14 +30,14 @@
             <option th:each="ingredient : ${ingredientCollection}" th:value="${ingredient.id}" th:text="${ingredient.id}"/>
         </select><br/>
 
-        <label>Name:</label>
-        <input type="text" th:field="*{name}" /><br/>
+        <label>New name:</label>
+        <input type="text" th:field="*{name}" th:placeholder="Name" th:required="required"/><br/>
 
-        <label>Amount:</label>
-        <input type="number" th:field="*{amount}" /><br/>
+        <label>New amount value:</label>
+        <input type="number" th:field="*{amount}" th:placeholder="Amount" th:required="required"/><br/>
 
-        <label>Nutrition:</label>
-        <input type="number" th:field="*{nutrition}" /><br/>
+        <label>New nutrition value:</label>
+        <input type="number" th:field="*{nutrition}" th:placeholder="Nutrition" th:required="required"/><br/>
 
         <button type="submit">Save</button>
     </form>

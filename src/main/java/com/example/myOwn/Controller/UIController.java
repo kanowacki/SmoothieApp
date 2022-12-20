@@ -17,7 +17,7 @@ public class UIController {
     @Autowired
     private SmoothieService service;
 
-    @GetMapping("/ui")
+    @GetMapping("/")
     public String startPage(Model model) {
         model.addAttribute("message", "Thank you for visiting.");
 
